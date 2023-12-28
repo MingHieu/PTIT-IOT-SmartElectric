@@ -1,0 +1,54 @@
+datasource db {
+    provider = "mongodb"
+    url      = env("DB_URL")
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+model User {
+    id          String   @id @default(auto()) @map("_id") @db.ObjectId
+    createAt    DateTime @default(now())
+    updateAt    DateTime @updatedAt
+    username    String   @unique
+    password    String
+    name        String
+    phoneNumber String
+    outlets     Outlet[]
+    fcmToken    String?
+}
+
+model Outlet {
+    id         String   @id @default(auto()) @map("_id") @db.ObjectId
+    code       String   @unique
+    maxWattage Int
+    devices    Device[]
+
+    user     User?   @relation(fields: [username], references: [username])
+    username String?
+}
+
+model Device {
+    id             String          @id @default(auto()) @map("_id") @db.ObjectId
+    name           String
+    port           Int
+    state          Boolean
+    priority       Int
+    offTime        DateTime?
+    wattageRecords WattageRecord[]
+
+    outlet     Outlet @relation(fields: [outletCode], references: [code])
+    outletCode String
+
+    @@unique([port, outletCode])
+}
+
+model WattageRecord {
+    id       String   @id @default(auto()) @map("_id") @db.ObjectId
+    createAt DateTime @default(now())
+    value    Int
+
+    device   Device @relation(fields: [deviceId], references: [id])
+    deviceId String @db.ObjectId
+}

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "649117433832",
+    "project_id": "iot-smart-electric",
+    "storage_bucket": "iot-smart-electric.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:649117433832:android:3662bbaf1b301e8f21ae5d",
+        "android_client_info": {
+          "package_name": "com.iot.smartelectric"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCV1x3F9eYj47Q-P0ORemRnlOfx4ey_wFU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

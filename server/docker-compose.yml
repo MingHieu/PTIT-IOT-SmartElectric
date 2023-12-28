@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  database:
+   # This image automatically creates a replica set required for transactions
+    image: prismagraphql/mongo-single-replica:5.0.3
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - '27017:27017'
